@@ -2,7 +2,12 @@ QT       += core gui
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
-CONFIG += c++17 rtti_off warn_on
+CONFIG += \
+    c++17 \
+    rtti_off \
+    warn_on \
+    sdk_no_version_check \
+    no_keywords
 
 DEFINES += KEYBOARD_HANDLER_DEBUG
 
@@ -41,6 +46,10 @@ linux {
 }
 
 macx {
+  CONFIG += sdk_no_version_check
+  LIBS += -framework Carbon
+  LIBS += -framework CoreFoundation
+  LIBS += -framework CoreGraphics
   macx-g++*{
   }
 
@@ -50,8 +59,10 @@ macx {
 
 HEADERS += \
   Keyboard/AnyKeyboardKiller.h \
+  Keyboard/KeyFlags.h \
   Keyboard/KeyID.h \
   Keyboard/KeyPosition.h \
+  Keyboard/KeyTextData.h \
   Keyboard/KeyboardHandler.h \
   Keyboard/KeyboardListener.h \
   Keyboard/ListenerExceptionHandler.h \
@@ -132,10 +143,20 @@ win32 {
 
 macx {
     HEADERS += \
-    Keyboard/Macos/KeyboardListenerMac.h
+    Keyboard/Macos/KeyIDMacOS.h \
+    Keyboard/Macos/KeyPositionMacOS.h \
+    Keyboard/Macos/KeyTextMaker.h \
+    Keyboard/Macos/KeyboardListenerMacOS.h \
+    Keyboard/Macos/MacOSKeyboardAPI.h \
+    Keyboard/Macos/ShifterInfo.h \
 
     SOURCES += \
-    Keyboard/Macos/KeyboardListenerMac.cpp
+    Keyboard/Macos/KeyIDMacOS.cpp \
+    Keyboard/Macos/KeyPositionMacOS.cpp \
+    Keyboard/Macos/KeyTextMaker.cpp \
+    Keyboard/Macos/KeyboardListenerMacOS.cpp \
+    Keyboard/Macos/MacOSKeyboardAPI.cpp \
+    Keyboard/Macos/ShifterInfo.cpp \
 }
 
 linux {

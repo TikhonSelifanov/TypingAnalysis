@@ -1,29 +1,31 @@
 #ifndef NSAPPLICATION_NSKEYBOARD_CRAWKEYEVENT_H
 #define NSAPPLICATION_NSKEYBOARD_CRAWKEYEVENT_H
 
+#include "TimeApp.h"
 #include "Keyboard/KeyID.h"
 #include "Keyboard/KeyPosition.h"
-#include "TimeApp.h"
+#include "Keyboard/KeyTextData.h"
+#include "Keyboard/KeyFlags.h"
 
 #include <QChar>
 #include <QObject>
 #include <QString>
 
-#include <string>
-
 namespace NSApplication {
 namespace NSKeyboard {
 
 struct CKeyPressing {
-  CTime Time;
+  using CKeyFlags = NSKernel::CKeyFlags;
+  CTime PressingTime;
   CKeyPosition KeyPosition;
   CKeyID KeyID;
-  QChar KeyLabel;
-  QString KeyText;
+  CLabelData KeyLabel;
+  CKeyTextData KeyText;
+  CKeyFlags Shifters;
 };
 
 struct CKeyReleasing {
-  CTime Time;
+  CTime ReleasingTime;
   CKeyPosition KeyPosition;
   CKeyID KeyID;
 };

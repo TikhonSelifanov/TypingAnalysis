@@ -26,7 +26,7 @@ public:
 
   void closeEvent(QCloseEvent* event);
 
-signals:
+Q_SIGNALS:
   bool closeMainWindow();
 
 private:

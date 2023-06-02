@@ -34,9 +34,9 @@ void CKeyboardHandlerDebugOutImpl::outputKeyPressing(
                          "ms\tsymb = %4\tlbl = %5")
                      .arg(KeyEvent.KeyID, 2, 16, QChar('0'))
                      .arg(KeyEvent.KeyPosition, 2, 16, QChar('0'))
-                     .arg(KeyEvent.Time.toMilliSecondsF(), 10)
-                     .arg(KeyEvent.KeyText, 2)
-                     .arg(KeyEvent.KeyLabel);
+                     .arg(KeyEvent.PressingTime.toMilliSecondsF(), 10)
+                     .arg(KeyEvent.KeyText.Symbol[0], 2)
+                     .arg(KeyEvent.KeyLabel.LowSymbol);
   ui_->Text()->append(Text);
 }
 
@@ -45,7 +45,7 @@ void CKeyboardHandlerDebugOutImpl::outputKeyReleasing(
   QString Text = QString("Release\tKeID = 0x%1\tKeyPos = 0x%2\ttime = %3 ms")
                      .arg(KeyEvent.KeyID, 2, 16, QChar('0'))
                      .arg(KeyEvent.KeyPosition, 2, 16, QChar('0'))
-                     .arg(KeyEvent.Time.toMilliSecondsF(), 10);
+                     .arg(KeyEvent.ReleasingTime.toMilliSecondsF(), 10);
   ui_->Text()->append(Text);
 }
 } // namespace NSKeyboardHandlerOutDetail

@@ -18,7 +18,7 @@ CMainWindow::CMainWindow(QWidget* parent)
 }
 
 void CMainWindow::closeEvent(QCloseEvent* Event) {
-  emit closeMainWindow();
+  Q_EMIT closeMainWindow();
   QMainWindow::closeEvent(Event);
 }
 
